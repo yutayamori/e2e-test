@@ -32,7 +32,7 @@ class Main {
 
         // Selenide公式ページ
         // 「What is Selenide?」という文言があることを確認
-        `$`("body").shouldHave(text("What is Selenide?"))
+        `$`("body").shouldHave(text("What is hoge?"))
 
     }
 }
