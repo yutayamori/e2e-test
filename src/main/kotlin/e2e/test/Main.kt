@@ -17,7 +17,7 @@ class Main {
 
         // ChromeDriver を headless モードで利用
         Configuration.browser = WebDriverRunner.CHROME
-//        Configuration.headless = true
+        Configuration.headless = true
         Configuration.reportsFolder = "test-result/reports"
         Configuration.browserSize = "1024x768"
 
@@ -34,7 +34,6 @@ class Main {
         // Selenide公式ページ
         // 「What is Selenide?」という文言があることを確認
         `$`("body").shouldHave(text("What is Selenide?"))
-
 
     }
 }
