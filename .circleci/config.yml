@@ -6,12 +6,15 @@ jobs:
     steps:
       - checkout
       - run:
-          name: 最初の一歩
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+          name: Run Tests
+          command: ./gradlew clean test
       - run:
-          name: コードの取得
+          name: Save test results
           command: |
-            ls -al
-            echo '^^^That should look familiar^^^'
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
