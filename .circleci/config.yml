@@ -39,9 +39,11 @@ jobs:
           path: ~/test-results/reports
 workflows:
   version: 2
-#  normal_workflow:
-#    jobs:
-#      - build
+  # push時のテスト実行用（workflowを使用すると、このworkflow(triggersの設定がなくjobを指定した)がないとpush時にjobが実行されない）
+  normal_workflow:
+    jobs:
+      - build
+  # スケジュールテスト実行用
   schedule_workflow:
     triggers:
       - schedule:
