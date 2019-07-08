@@ -34,5 +34,7 @@ class Main {
         // 「What is Selenide?」という文言があることを確認
         `$`("body").shouldHave(text("What is Selenide?"))
 
+        println("テスト完了!!!!!")
+
     }
 }

@@ -6,23 +6,16 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      # Download and cache dependencies
-#      - restore_cache:
-#          keys:
-#            - v1-dependencies-{{ checksum "build.gradle" }}
-#            # fallback to using the latest cache if no exact match is found
-#            - v1-dependencies-
       - restore_cache:
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
             - gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
             - gradle-repo-v1-{{ .Branch }}-
             - gradle-repo-v1-
-      - run: gradle dependencies
-#      - save_cache:
-#          paths:
-#            - ~/.gradle
-#          key: v1-dependencies-{{ checksum "build.gradle" }}
+      - run:
+          name: Library check
+          command: |
+            gradle dependencies
       - save_cache:
           paths:
             - ~/.gradle
