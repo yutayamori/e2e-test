@@ -39,9 +39,9 @@ jobs:
           path: ~/test-results/reports
 workflows:
   version: 2
-  normal_workflow:
-    jobs:
-      - build
+#  normal_workflow:
+#    jobs:
+#      - build
   schedule_workflow:
     triggers:
       - schedule:
