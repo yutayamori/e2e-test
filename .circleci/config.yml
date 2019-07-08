@@ -28,7 +28,6 @@ jobs:
           command: |
             mkdir -p ~/test-results/junit/
             find . -type f -regex ".*/build/test-results/.*xml" -exec cp -p {} ~/test-results/junit/ \;
-            ls -ltrR .*/build/reports
             mkdir -p ~/test-results/reports/
             find . -type d -regex ".*/build/reports" -exec cp -rp {} ~/test-results/ \;
           when: always
@@ -38,3 +37,18 @@ jobs:
           path: ~/test-results/junit
       - store_artifacts:
           path: ~/test-results/reports
+workflows:
+  version: 2.0
+  normal_workflow:
+    jobs:
+      - build
+  schedule_workflow:
+    triggers:
+      - schedule:
+          cron: "0,3 * * * *" # UTCで記述。-9hours
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
