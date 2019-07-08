@@ -36,3 +36,5 @@ jobs:
           path: ~/test-results
       - store_artifacts:
           path: ~/test-results/junit
+      - store_artifacts:
+          path: ~/test-results/reports
